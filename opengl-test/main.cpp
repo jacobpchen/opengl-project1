@@ -26,7 +26,22 @@ void drawRoad(){
     int road_2[] = {600, -550};
     glRectiv(road_1, road_2);
     // yellow lines
+    
     glColor3f(1.000, 1.000, 0.000);
+    glLineStipple(50, 0xAAAA);
+    glEnable(GL_LINE_STIPPLE);
+    glLineWidth(3);
+    glBegin(GL_LINES);
+        glVertex2f(-599, -500);
+        glVertex2f(599, -500);
+    glDisable(GL_LINE_STIPPLE);
+    
+
+    
+    
+    glFlush();
+    glEnd();
+    
     
 }
 
@@ -111,7 +126,7 @@ void display(void)
     // Draw second house
     drawRoof(-300, -200, -200, -100, -100, -200, 0.741, 0.718, 0.420);
     drawHouseOutline(-300,-200,-100,-400, 1.000, 0.894, 0.710);
-    drawDoor(-175, -330, -125, -400, 0.741, 0.718, 0.420);
+    drawDoor(-200, -330, -150, -400, 0.741, 0.718, 0.420);
     
     
     
