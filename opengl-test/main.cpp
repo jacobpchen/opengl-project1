@@ -12,69 +12,16 @@ void init(void)
     //gluOrtho2D(0.0,600,0.0,600);
 }
 
-void drawSky(){
-    glColor3f(0.118, 0.565, 1.000);
-    int sky_1[] = {-600, 600};
-    int sky_2[] = {600, -400};
-    glRectiv(sky_1, sky_2);
-}
+void drawSky();
+void drawRoad();
+void drawWheatField();
+void drawBridge();
+void drawRiver();
+void drawHouseOutline (int x1, int y1, int x2, int y2, float r, float g, float b);
+void drawRoof(int x1,int y1, int x2,int y2,int x3,int y3, float r, float g, float b);
+void drawDoor(int x1,int y1, int x2,int y2, float r, float g, float b);
 
-void drawRoad(){
-   // draw black road
-    glColor3f(0, 0, 0);
-    int road_1[] = {-600, -450};
-    int road_2[] = {600, -550};
-    glRectiv(road_1, road_2);
-    // yellow lines
-    
-    glColor3f(1.000, 1.000, 0.000);
-    glLineStipple(50, 0xAAAA);
-    glEnable(GL_LINE_STIPPLE);
-    glLineWidth(3);
-    glBegin(GL_LINES);
-        glVertex2f(-599, -500);
-        glVertex2f(599, -500);
-    glDisable(GL_LINE_STIPPLE);
-    
-
-    
-    
-    glFlush();
-    glEnd();
-    
-    
-}
-
-void drawHouseOutline (int x1, int y1, int x2, int y2, float r, float g, float b){
-    // outline of house
-    glColor3f(r, g, b);
-    int house_outline_1 [] = {x1, y1};
-    int house_outline_2 [] = {x2, y2};
-    glRectiv(house_outline_1, house_outline_2);
-}
-
-void drawRoof(int x1,int y1, int x2,int y2,int x3,int y3, float r, float g, float b){
-    glColor3f(r, g, b);
-    glBegin(GL_TRIANGLES);
-    glVertex2i(x1, y1);
-    glVertex2i(x2, y2);
-    glVertex2i(x3, y3);
-    glEnd( );
-}
-
-void drawDoor(int x1,int y1, int x2,int y2, float r, float g, float b){
-    glColor3f(r, g, b);
-    int door_outline_1 [] = {x1, y1};
-    int door_outline_2 [] = {x2, y2};
-    glRectiv(door_outline_1, door_outline_2);
-}
-
-void drawGrass(){
-    glColor3f(0.0, 0.502, 0.0); // green
-    int grass_outline_1 [] = {-600, -400};
-    int grass_outline_2 [] = {600, -600};
-    glRectiv(grass_outline_1, grass_outline_2);
-}
+void drawGrass();
 
 void display(void)
 {
@@ -116,8 +63,12 @@ void display(void)
     */
     
     drawSky();
+    drawRiver();
     drawGrass();
+    drawWheatField();
+    drawBridge();
     drawRoad();
+    
     // Draw first house
     drawRoof(-550, -200, -450, -100, -350, -200, 0.878, 1.000, 1.000);
     drawHouseOutline(-550,-200,-350,-400, 0.282, 0.820, 0.800);
@@ -127,9 +78,6 @@ void display(void)
     drawRoof(-300, -200, -200, -100, -100, -200, 0.741, 0.718, 0.420);
     drawHouseOutline(-300,-200,-100,-400, 1.000, 0.894, 0.710);
     drawDoor(-200, -330, -150, -400, 0.741, 0.718, 0.420);
-    
-    
-    
     
     glFlush();
 }
@@ -160,4 +108,104 @@ void reshape(int width, int height){
     // switch back to default model view
     glMatrixMode(GL_MODELVIEW);
     
+}
+
+void drawSky(){
+    glColor3f(0.529, 0.808, 0.922);
+    int sky_1[] = {-600, 600};
+    int sky_2[] = {600, 300};
+    glRectiv(sky_1, sky_2);
+}
+
+void drawRoad(){
+   // draw black road
+    glColor3f(0, 0, 0);
+    int road_1[] = {-600, -450};
+    int road_2[] = {600, -550};
+    glRectiv(road_1, road_2);
+    // yellow lines
+    
+    glColor3f(1.000, 1.000, 0.000);
+    glLineStipple(50, 0xAAAA);
+    glEnable(GL_LINE_STIPPLE);
+    glLineWidth(3);
+    glBegin(GL_LINES);
+        glVertex2f(-599, -500);
+        glVertex2f(599, -500);
+    glDisable(GL_LINE_STIPPLE);
+    glFlush();
+    glEnd();
+}
+
+void drawHouseOutline (int x1, int y1, int x2, int y2, float r, float g, float b){
+    // outline of house
+    glColor3f(r, g, b);
+    int house_outline_1 [] = {x1, y1};
+    int house_outline_2 [] = {x2, y2};
+    glRectiv(house_outline_1, house_outline_2);
+}
+
+void drawRoof(int x1,int y1, int x2,int y2,int x3,int y3, float r, float g, float b){
+    glColor3f(r, g, b);
+    glBegin(GL_TRIANGLES);
+    glVertex2i(x1, y1);
+    glVertex2i(x2, y2);
+    glVertex2i(x3, y3);
+    glEnd( );
+}
+
+void drawDoor(int x1,int y1, int x2,int y2, float r, float g, float b){
+    glColor3f(r, g, b);
+    int door_outline_1 [] = {x1, y1};
+    int door_outline_2 [] = {x2, y2};
+    glRectiv(door_outline_1, door_outline_2);
+}
+
+void drawGrass(){
+    // bottom grass
+    glColor3f(0.0, 0.502, 0.0); // green
+    int grass_outline_1 [] = {-600, -300};
+    int grass_outline_2 [] = {600, -600};
+    glRectiv(grass_outline_1, grass_outline_2);
+    
+    // top grass
+    int grass_outline_3 [] = {-600, 300};
+    int grass_outline_4 [] = {600, -100};
+    glRectiv(grass_outline_3, grass_outline_4);
+}
+
+void drawWheatField(){
+    glColor3f(0.933, 0.910, 0.667);
+    glLineWidth(2);
+    glBegin(GL_LINES);
+    glVertex2f(-75, -330);
+    glVertex2f(-75, -400);
+    glVertex2f(-75, -330);
+    glVertex2f(-70, -310);
+    glEnd();
+}
+
+void drawBridge(){
+    glColor3f(0.824, 0.706, 0.549);
+    int bridge_top[] = {200, -80};
+    int bridge_bottom[] = {300, -320};
+    glRectiv(bridge_top, bridge_bottom);
+    
+    
+    // draw lines on the bridge
+    glColor3f(0.545, 0.271, 0.075);
+    glBegin(GL_LINES);
+    for (int i = -300; i < -80; i+= 20){
+        glVertex2f(200, i);
+        glVertex2f(300, i);
+    }
+    glEnd();
+    
+}
+
+void drawRiver(){
+    glColor3f(0.255, 0.412, 0.882);
+    int river_top[] = {-600, -300};
+    int river_bot[] = {600, -100};
+    glRectiv(river_top, river_bot);
 }
