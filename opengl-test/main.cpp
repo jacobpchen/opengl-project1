@@ -3,8 +3,6 @@
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
 
-void reshape(int, int);
-
 void init(void)
 {
     glClearColor(1.0, 1.0, 1.0, 0.0);    //set display window color to white
@@ -12,11 +10,13 @@ void init(void)
     //gluOrtho2D(0.0,600,0.0,600);
 }
 
+void reshape(int, int);
 void drawSky();
 void drawRoad();
 void drawWheatField();
 void drawBridge();
 void drawRiver();
+void drawTree();
 void drawHouseOutline (int x1, int y1, int x2, int y2, float r, float g, float b);
 void drawRoof(int x1,int y1, int x2,int y2,int x3,int y3, float r, float g, float b);
 void drawDoor(int x1,int y1, int x2,int y2, float r, float g, float b);
@@ -27,40 +27,6 @@ void display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);    // clear display window
     glLoadIdentity(); // reset coordinate system
-    //glColor3f(1.0, 0.0, 0.0); // set line segment color to blue
-    //glLineWidth(4.0);    // set line thickness
-    
-    /*
-    int point1 [ ] = {300, 200};
-    int point2 [ ] = {100, 100};
-    int point3 [ ] = {200, 400};
-    int point4 [ ] = {300, 100};
-    int point5 [ ] = {100, 250};
-    
-    glBegin (GL_LINE_LOOP);
-    glVertex2iv (point1);
-    glVertex2iv (point2);
-    glVertex2iv (point3);
-    glVertex2iv (point4);
-    glVertex2iv (point5);
-    glEnd( );
-    */
-    
-    
-    /*
-     glBegin(GL_TRIANGLES);
-         glVertex2i(300, 0);
-         glVertex2i(230, -80);
-         glVertex2i(360, -80);
-    
-    glEnd();
-    */
-    
-    /* Rectangle
-    int vertex1 [ ] = {200, 100};
-    int vertex2 [ ] = {50, 250};
-    glRectiv (vertex1, vertex2);
-    */
     
     drawSky();
     drawRiver();
@@ -68,6 +34,7 @@ void display(void)
     drawWheatField();
     drawBridge();
     drawRoad();
+    drawTree();
     
     // Draw first house
     drawRoof(-550, -200, -450, -100, -350, -200, 0.878, 1.000, 1.000);
@@ -208,4 +175,21 @@ void drawRiver(){
     int river_top[] = {-600, -300};
     int river_bot[] = {600, -100};
     glRectiv(river_top, river_bot);
+}
+
+void drawTree(){
+    // draw trunk
+    glColor3f(0.545, 0.271, 0.075);
+    int trunk_top_left[] = {400, -325};
+    int trunk_bot_right[] = {450, -400};
+    glRectiv(trunk_top_left, trunk_bot_right);
+    
+    // draw tree
+    glColor3f(0.000, 0.392, 0.000);
+    glBegin(GL_LINE);
+    glVertex2f(425, -200);
+    glVertex2f(400, -210);
+    
+    
+    glEnd();
 }
