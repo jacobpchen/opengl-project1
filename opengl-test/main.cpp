@@ -40,20 +40,20 @@ void display(void)
     // Draw first house
     drawRoof(-550, -200, -450, -100, -350, -200, 0.878, 1.000, 1.000);
     drawHouseOutline(-550,-200,-350,-400, 0.282, 0.820, 0.800);
-    drawDoor(-400, -330, -450, -400, 0.878, 1.000, 1.000);
+    drawDoor(-550,-200,-350,-400, 0.878, 1.000, 1.000);
     drawWindow(-550,-200,-350,-400, 0.878, 1.000, 1.000);
     
     // Draw second house
     drawRoof(-300, -200, -200, -100, -100, -200, 0.741, 0.718, 0.420);
     drawHouseOutline(-300,-200,-100,-400, 1.000, 0.894, 0.710);
     drawWindow(-300,-200,-100,-400, 0.741, 0.718, 0.420);
-    drawDoor(-200, -330, -150, -400, 0.741, 0.718, 0.420);
+    drawDoor(-300,-200,-100,-400, 0.741, 0.718, 0.420);
     
     // Draw third house
-    drawRoof(-300, 300, -200, 450, -100, 300, 0.741, 0.718, 0.420);
-    drawHouseOutline(-300, 300, -100, 100, 1.000, 0.894, 0.710);
-    drawWindow(-300, 300, -100, 100, 0.741, 0.718, 0.420);
-    drawDoor(-200, -330, -150, -400, 0.741, 0.718, 0.420);
+    drawRoof(-300, 350, -200, 450, -100, 350, 0.941, 1.000, 0.941);
+    drawHouseOutline(-300, 350, -100, 150, 0.412, 0.412, 0.412);
+    drawWindow(-300, 350, -100, 150, 0.941, 1.000, 0.941);
+    drawDoor(-300, 350, -100, 150, 0.941, 1.000, 0.941);
     
     // Draw fourth house
     
@@ -96,11 +96,17 @@ void drawSky(){
 }
 
 void drawRoad(){
-   // draw black road
+   // draw black road bottom
     glColor3f(0, 0, 0);
-    int road_1[] = {-600, -450};
-    int road_2[] = {600, -550};
-    glRectiv(road_1, road_2);
+    int road_bot_1[] = {-600, -450};
+    int road_bot_2[] = {600, -550};
+    glRectiv(road_bot_1, road_bot_2);
+    
+    int road_top_1[] = {-600, 100};
+    int road_top_2[] = {600, 0};
+    glRectiv(road_top_1, road_top_2);
+    
+    
     // yellow lines
     
     glColor3f(1.000, 1.000, 0.000);
@@ -110,6 +116,8 @@ void drawRoad(){
     glBegin(GL_LINES);
         glVertex2f(-599, -500);
         glVertex2f(599, -500);
+        glVertex2f(-599, 50);
+        glVertex2f(599, 50);
     glDisable(GL_LINE_STIPPLE);
     glFlush();
     glEnd();
@@ -134,12 +142,13 @@ void drawRoof(int x1,int y1, int x2,int y2,int x3,int y3, float r, float g, floa
 
 void drawDoor(int x1,int y1, int x2,int y2, float r, float g, float b){
     glColor3f(r, g, b);
+    int door_top_left [] = {x2-100, y2+50};
+    int door_bottom_right [] = {x2-50, y2};
     
     
-    
-    int door_outline_1 [] = {x1, y1};
-    int door_outline_2 [] = {x2, y2};
-    glRectiv(door_outline_1, door_outline_2);
+    //int door_outline_1 [] = {x1, y1};
+    //int door_outline_2 [] = {x2, y2};
+    glRectiv(door_top_left, door_bottom_right);
 }
 
 void drawGrass(){
