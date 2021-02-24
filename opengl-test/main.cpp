@@ -16,6 +16,7 @@ void drawRoad();
 void drawWheatField();
 void drawBridge();
 void drawRiver();
+void drawWindow(int x1, int y1, int x2, int y2,float r, float g, float b);              // take the house outline and draw windows relative
 void drawTree();
 void drawHouseOutline (int x1, int y1, int x2, int y2, float r, float g, float b);
 void drawRoof(int x1,int y1, int x2,int y2,int x3,int y3, float r, float g, float b);
@@ -31,7 +32,7 @@ void display(void)
     drawSky();
     drawRiver();
     drawGrass();
-    drawWheatField();
+    //drawWheatField();
     drawBridge();
     drawRoad();
     drawTree();
@@ -40,11 +41,21 @@ void display(void)
     drawRoof(-550, -200, -450, -100, -350, -200, 0.878, 1.000, 1.000);
     drawHouseOutline(-550,-200,-350,-400, 0.282, 0.820, 0.800);
     drawDoor(-400, -330, -450, -400, 0.878, 1.000, 1.000);
+    drawWindow(-550,-200,-350,-400, 0.878, 1.000, 1.000);
     
     // Draw second house
     drawRoof(-300, -200, -200, -100, -100, -200, 0.741, 0.718, 0.420);
     drawHouseOutline(-300,-200,-100,-400, 1.000, 0.894, 0.710);
+    drawWindow(-300,-200,-100,-400, 0.741, 0.718, 0.420);
     drawDoor(-200, -330, -150, -400, 0.741, 0.718, 0.420);
+    
+    // Draw third house
+    drawRoof(-300, 300, -200, 450, -100, 300, 0.741, 0.718, 0.420);
+    drawHouseOutline(-300, 300, -100, 100, 1.000, 0.894, 0.710);
+    drawWindow(-300, 300, -100, 100, 0.741, 0.718, 0.420);
+    drawDoor(-200, -330, -150, -400, 0.741, 0.718, 0.420);
+    
+    // Draw fourth house
     
     glFlush();
 }
@@ -123,6 +134,9 @@ void drawRoof(int x1,int y1, int x2,int y2,int x3,int y3, float r, float g, floa
 
 void drawDoor(int x1,int y1, int x2,int y2, float r, float g, float b){
     glColor3f(r, g, b);
+    
+    
+    
     int door_outline_1 [] = {x1, y1};
     int door_outline_2 [] = {x2, y2};
     glRectiv(door_outline_1, door_outline_2);
@@ -185,11 +199,22 @@ void drawTree(){
     glRectiv(trunk_top_left, trunk_bot_right);
     
     // draw tree
-    glColor3f(0.000, 0.392, 0.000);
+    glColor3f(0.000, 0.0, 0.000);
     glBegin(GL_LINE);
     glVertex2f(425, -200);
     glVertex2f(400, -210);
-    
+    glVertex2f(410, -210);
+    glVertex2f(390, -220);
     
     glEnd();
+}
+
+void drawWindow(int x1, int y1, int x2, int y2,float r, float g, float b){
+    glColor3f(r, g, b);
+    int left_window_1 [] = {x1+25, y1-25};
+    int left_window_2 [] = {x1+75, y1-75};
+    int right_window_1 [] = {left_window_1[0] + 100, left_window_1[1]};
+    int right_window_2 [] = {right_window_1[0] + 50, left_window_2[1]};
+    glRectiv(left_window_1, left_window_2);
+    glRectiv(right_window_1, right_window_2);
 }
