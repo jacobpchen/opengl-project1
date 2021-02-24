@@ -75,7 +75,7 @@ int main(int argc, char** argv) {
     glutInit(&argc, argv);    // initlaize glut
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);    // set display mode
     glutInitWindowPosition(50, 100);    //set top left display window position
-    glutInitWindowSize(1200, 1200);    //set display window width and height
+    glutInitWindowSize(600, 480);    //set display window width and height
     glutCreateWindow("An Example OpenGL Window");    // Create display window
     init();
     glutDisplayFunc(display); //send graphics to display window
@@ -86,7 +86,7 @@ int main(int argc, char** argv) {
 
 void reshape(int width, int height){
     // view port
-    glViewport(0, 0, (GLsizei)width, (GLsizei)height);    // sets the screen to whole width
+    glViewport(0, 0, width, height);    // sets the screen to whole width
     
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -154,10 +154,6 @@ void drawDoor(int x1,int y1, int x2,int y2, float r, float g, float b){
     glColor3f(r, g, b);
     int door_top_left [] = {x2-100, y2+50};
     int door_bottom_right [] = {x2-50, y2};
-    
-    
-    //int door_outline_1 [] = {x1, y1};
-    //int door_outline_2 [] = {x2, y2};
     glRectiv(door_top_left, door_bottom_right);
 }
 
@@ -191,7 +187,7 @@ void drawBridge(){
     int bridge_bottom[] = {300, -320};
     glRectiv(bridge_top, bridge_bottom);
     
-    
+    /*
     // draw lines on the bridge
     glColor3f(0.545, 0.271, 0.075);
     glBegin(GL_LINES);
@@ -200,6 +196,7 @@ void drawBridge(){
         glVertex2f(300, i);
     }
     glEnd();
+     */
     
 }
 
