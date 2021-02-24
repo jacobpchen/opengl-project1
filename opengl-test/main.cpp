@@ -50,12 +50,22 @@ void display(void)
     drawDoor(-300,-200,-100,-400, 0.741, 0.718, 0.420);
     
     // Draw third house
-    drawRoof(-300, 350, -200, 450, -100, 350, 0.941, 1.000, 0.941);
-    drawHouseOutline(-300, 350, -100, 150, 0.412, 0.412, 0.412);
-    drawWindow(-300, 350, -100, 150, 0.941, 1.000, 0.941);
-    drawDoor(-300, 350, -100, 150, 0.941, 1.000, 0.941);
+    drawRoof(-550, 350, -450, 450, -350, 350, 1.000, 0.753, 0.796);
+    drawHouseOutline(-550, 350, -350, 150, 0.545, 0.000, 0.000);
+    drawWindow(-550, 350, -350, 150, 1.000, 0.753, 0.796);
+    drawDoor(-550, 350, -350, 150, 1.000, 0.753, 0.796);
     
     // Draw fourth house
+    drawRoof(-100, 350, 0, 450, 100, 350, 0.941, 1.000, 0.941);
+    drawHouseOutline(-100, 350, 100, 150, 0.412, 0.412, 0.412);
+    drawWindow(-100, 350, 100, 150, 0.941, 1.000, 0.941);
+    drawDoor(-100, 350, 100, 150, 0.941, 1.000, 0.941);
+    
+    // Draw fifth house
+    drawRoof(300, 350, 400, 450, 500, 350, 0.902, 0.902, 0.980);
+    drawHouseOutline(300, 350, 500, 150, 0.545, 0.000, 0.545);
+    drawWindow(300, 350, 500, 150, 0.902, 0.902, 0.980);
+    drawDoor(300, 350, 500, 150, 0.902, 0.902, 0.980);
     
     glFlush();
 }
@@ -102,13 +112,13 @@ void drawRoad(){
     int road_bot_2[] = {600, -550};
     glRectiv(road_bot_1, road_bot_2);
     
+    // draw top road
     int road_top_1[] = {-600, 100};
     int road_top_2[] = {600, 0};
     glRectiv(road_top_1, road_top_2);
     
     
     // yellow lines
-    
     glColor3f(1.000, 1.000, 0.000);
     glLineStipple(50, 0xAAAA);
     glEnable(GL_LINE_STIPPLE);
@@ -153,7 +163,7 @@ void drawDoor(int x1,int y1, int x2,int y2, float r, float g, float b){
 
 void drawGrass(){
     // bottom grass
-    glColor3f(0.0, 0.502, 0.0); // green
+    glColor3f(0.180, 0.545, 0.341); // green
     int grass_outline_1 [] = {-600, -300};
     int grass_outline_2 [] = {600, -600};
     glRectiv(grass_outline_1, grass_outline_2);
@@ -208,13 +218,16 @@ void drawTree(){
     glRectiv(trunk_top_left, trunk_bot_right);
     
     // draw tree
-    glColor3f(0.000, 0.0, 0.000);
-    glBegin(GL_LINE);
-    glVertex2f(425, -200);
-    glVertex2f(400, -210);
-    glVertex2f(410, -210);
-    glVertex2f(390, -220);
-    
+    glColor3f(0.000, 0.392, 0.000);
+    glPointSize(5);
+    glBegin(GL_POLYGON);
+    glVertex2f(425, -215);
+    glVertex2f(385, -265);
+    glVertex2f(415, -265);
+    glVertex2f(355, -325);
+    glVertex2f(500, -325);
+    glVertex2f(445, -265);
+    glVertex2f(465, -265);
     glEnd();
 }
 
